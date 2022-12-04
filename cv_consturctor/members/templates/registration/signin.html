@@ -1,0 +1,43 @@
+<!doctype html>
+<html lang="en">
+
+  {% load static %}
+
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="generator" content="Hugo 0.104.2">
+    <title>Sign Up</title>
+
+    <link href="{% static 'bootstrap.min.css' %}" rel="stylesheet">
+
+
+    <!-- Custom styles for this template -->
+    <link href="{% static 'signin.css' %}" rel="stylesheet">
+  </head>
+  <body class="text-center">
+
+<main class="form-signin w-100 m-auto">
+  <form style="margin-bottom: 20px;" action="" method="post">
+    {% csrf_token %}
+    <h1 class="h3 mb-3 fw-normal">Please sign up</h1>
+
+    <div class="form-floating">
+      <input type="text" class="form-control" id="floatingInput" placeholder="name@example.com" name="username">
+      <label for="floatingInput">Username</label>
+    </div>
+
+    <div class="form-floating">
+      <input type="password" class="form-control" id="floatingPassword" placeholder="Password" name="password">
+      <label for="floatingPassword">Password</label>
+    </div>
+
+    <button class="w-100 btn btn-lg btn-primary" type="submit">Sign In</button>
+  </form>
+  {% for message in messages %}
+    <p style="color:red;">{{message}}</p>
+  {% endfor %}
+  <p>New user? <a href="signup">Sign Up</a></p>
+</main>
+  </body>
+</html>

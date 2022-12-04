@@ -1,0 +1,126 @@
+<!DOCTYPE html>
+{%load static%}
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Create CV</title>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.0.0/dist/css/bootstrap.min.css"
+          integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
+    <style>
+        .center {
+            margin-top: 10px;
+            margin-bottom: 20px;
+            text-align: center;
+        }
+
+        html, body {
+            margin: 5% auto;
+        }
+    </style>
+</head>
+<body style="margin-left:10%; margin-right:10%; margin-top:10%">
+<div class="center">
+    <h1>Edit CV</h1>
+</div>
+<div class="card">
+    <div class="card-body">
+        <form method="post" enctype='multipart/form-data'>
+            {%csrf_token%}
+            <div class="form-row">
+                <div class="form-group col-md-6">
+                    <label for="inputEmail4">First Name</label>
+                    <input type="text" class="form-control" id="inputEmail4" placeholder="First Name" name="first_name"
+                           value="{{cv.first_name_draft}}">
+                </div>
+                <div class="form-group col-md-6">
+                    <label for="inputPassword4">Last Name</label>
+                    <input type="text" class="form-control" id="inputPassword4" placeholder="Last Name"
+                           name="last_name" value="{{cv.last_name_draft}}">
+                </div>
+            </div>
+            <div class="form-row">
+                <div class="form-group col-md-6">
+                    <label for="inputEmail5">Email</label>
+                    <input type="email" class="form-control" id="inputEmail5" placeholder="Email" name="email"
+                           value="{{cv.email_draft}}">
+                </div>
+                <div class="form-group col-md-6">
+                    <label for="inputPhone">Phone</label>
+                    <input type="tel" class="form-control" id="inputPhone" placeholder="Phone" name="tel"
+                           value="{{cv.phone_number}}">
+                </div>
+            </div>
+            <div class="form-row">
+                <div class="form-group col-md-6">
+                    <label for="inputAddress">University Name</label>
+                    <input type="text" class="form-control" id="inputAddress" placeholder="University Name"
+                           name="university_name" value="{{cv.university_name_draft}}">
+                </div>
+                <div class="form-group col-md-6">
+                    <label for="inputAddress2">Graduation Date</label>
+                    {%if cv.graduation_date_draft%}
+                    <input type="date" class="form-control" id="inputAddress2" placeholder="Graduation Date"
+                           name="graduation_date" value="{{cv.graduation_date_draft|date:'Y-m-d'}}">
+                    {%else%}
+                    <input type="date" class="form-control" id="inputAddress2" placeholder="Graduation Date"
+                           name="graduation_date" value="2000-01-01">
+                    {%endif%}
+                </div>
+            </div>
+            <div class="form-row">
+                <div class="form-group col-md-6">
+                    <label for="faculty">Faculty</label>
+                    <input type="text" class="form-control" id="faculty" placeholder="Faculty" name="faculty"
+                           value="{{cv.faculty_draft}}">
+                </div>
+                <div class="form-group col-md-6">
+                    <label for="gpa">GPA</label>
+                    {%if cv.gpa_draft%}
+                    <input type="number" step="0.01" class="form-control" id="gpa" placeholder="GPA" name="gpa"
+                           value="{{cv.gpa_draft}}">
+                    {%else%}
+                    <input type="number" step="0.01" class="form-control" id="gpa" placeholder="GPA" name="gpa"
+                           value="0">
+                    {%endif%}
+                </div>
+            </div>
+            <div class="form-row">
+                <div class="form-group col-md-6">
+                    <label for="Languages">Languages (separate by commas)</label>
+                    <input type="text" class="form-control" id="Languages" placeholder="Languages" name="languages"
+                           value="{{cv.languages_draft}}">
+                </div>
+                <div class="form-group col-md-6">
+                    <label for="Technologies">Technologies (separate by commas)</label>
+                    <input type="text" class="form-control" id="Technologies" placeholder="Technologies"
+                           name="technologies" value="{{cv.technologies_draft}}">
+                </div>
+            </div>
+            <div class="form-group">
+                <label for="exampleFormControlFile1">Your Photo:</label>
+                <input type="file" class="form-control-file" id="exampleFormControlFile1" name="image">
+            </div>
+            <div class="form-row" style="margin-top:3%;">
+                <div style="text-align:center" class="col-md-4">
+                    <a href="/projects">
+                        <button type="submit" class="btn btn-lg btn-secondary" formaction="/projects/">Change Projects
+                        </button>
+                    </a>
+                </div>
+                <div style="text-align:center;" class="col-md-4">
+                    <button type="submit" class="btn btn-lg btn-primary" formaction="/save/">Save CV</button>
+                </div>
+                <div style="text-align:center" class="col-md-4">
+                    <button type="submit" class="btn btn-lg btn-secondary" formaction="/draft/">Save Draft</button>
+                </div>
+            </div>
+        </form>
+    </div>
+</div>
+<a href="/">
+    <button type="button" class="btn btn btn-outline-dark btn-lg btn-block"
+            style="margin: 4% auto">Home
+    </button>
+</a>
+</body>
+</html>

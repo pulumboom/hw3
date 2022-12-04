@@ -1,0 +1,56 @@
+<!doctype html>
+<html lang="en">
+
+  {% load static %}
+
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="generator" content="Hugo 0.104.2">
+    <title>Sign Up</title>
+
+    <link href="{% static 'bootstrap.min.css' %}" rel="stylesheet">
+
+
+    <!-- Custom styles for this template -->
+    <link href="{% static 'signin.css' %}" rel="stylesheet">
+  </head>
+  <body class="text-center">
+
+<main class="form-signin w-100 m-auto">
+  <form style="margin-bottom: 20px;" action="" method="post">
+    {% csrf_token %}
+    <h1 class="h3 mb-3 fw-normal">Please sign up</h1>
+
+    <div class="form-floating">
+      {{form.username}}
+      <label for="{{form.username.auto_id}}">{{form.username.label}}</label>
+    </div>
+
+    <div class="form-floating">
+      {{form.password1}}
+      <label for="{{form.password1.auto_id}}">{{form.password1.label}}</label>
+    </div>
+
+    <div class="form-floating">
+      {{form.password2}}
+      <label for="{{form.password2.auto_id}}">{{form.password2.label}}</label>
+    </div>
+
+    <button class="w-100 btn btn-lg btn-primary" type="submit">Sign Up</button>
+  </form>
+  <p>Already have an account? <a href="signin">Sign In</a></p>
+  {{form.errors}}
+</main>
+  </body>
+<script>
+   element = document.querySelector('input[id^="{{ form.username.auto_id }}"]');
+   element.classList.add("form-control")
+   element.setAttribute("style", "border-bottom-left-radius: 0;border-bottom-right-radius: 0;")
+   element = document.querySelector('input[id^="{{ form.password1.auto_id }}"]');
+   element.classList.add("form-control")
+   element.setAttribute("style", "border-radius: 0;margin-bottom: 0;")
+   element = document.querySelector('input[id^="{{ form.password2.auto_id }}"]');
+   element.classList.add("form-control")
+</script>
+</html>
